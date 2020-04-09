@@ -1,0 +1,36 @@
+<html>
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <body marginheight="0px" marginwidth="0px">
+    <img
+      id="img"
+      class="img"
+      src=""
+      width="100%"
+      height="100%"
+      alt=""
+      display:block
+    />
+
+    <script>
+      setInterval(function () {
+        shuLiang("C:\Users\holic\Desktop\konachan\spy\img")
+          }, 5000);
+      function shuLiang($url){//造一个方法，给一个参数
+              $sl=0;//造一个变量，让他默认值为0;
+              $arr = glob($url);//把该路径下所有的文件存到一个数组里面;
+              foreach ($arr as $v)//循环便利一下，吧数组$arr赋给$v;
+              {
+                  if(is_file($v))//先用个if判断一下这个文件夹下的文件是不是文件，有可能是文件夹;
+                  {
+                      $sl++;//如果是文件，数量加一;
+                  }
+                  else
+                  {
+                      $sl+=ShuLiang($v."/*");//如果是文件夹，那么再调用函数本身获取此文件夹下文件的数量，这种方法称为递归;
+                  }
+              }
+              return $sl;//当这个方法走完后，返回一个值$sl,这个值就是该路径下所有的文件数量;
+        }
+    </script>
+  </body>
+</html>
